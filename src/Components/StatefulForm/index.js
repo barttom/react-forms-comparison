@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-const StatefulForm = ({ onSendForm }) => {
+const StatefulForm = ({
+  onChangeData,
+  onSendForm }) => {
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -9,11 +11,30 @@ const StatefulForm = ({ onSendForm }) => {
     colorSecondary: '#0074D9',
   });
   const handleChange = ({ target }) => {
-    setForm({
+    const newData = {
       ...form,
       [target.name]: target.type === 'checkbox' ? target.checked : target.value,
+    };
+    const {
+      colorMain,
+      colorSecondary,
+      isDoubleBladed,
+    } = newData;
+
+    setForm(newData);
+    onChangeData({
+      colorMain,
+      colorSecondary,
+      isDoubleBladed,
     });
   };
+
+  useEffect(() => onChangeData({
+    isDoubleBladed: false,
+    colorMain: '#0074D9',
+    colorSecondary: '#0074D9',
+  }), []);
+
 
   return (
     <form onSubmit={(event) => onSendForm(form, event)} id="stateful-form">
