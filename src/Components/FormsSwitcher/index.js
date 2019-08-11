@@ -1,15 +1,30 @@
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import './style.css'
 import StatefulForm from "../StatefulForm";
+import LightSaber from "../LightSaber";
 
 
 
 const FormsSwitcher = ({onSendForm}) => {
   const [tabId, setTabId] = useState(0);
+  const [statefulFormData, setStatefulFormData] = useState({
+    colorMain: '#0074D9',
+    colorSecondary: '#0074D9'
+  });
+
   const displayFormContent = () => {
     switch (tabId) {
       case 0:
-        return <StatefulForm onSendForm={onSendForm} />;
+        return (
+          <Fragment>
+            <div className="column">
+              <StatefulForm onSendForm={onSendForm} onChangeData={setStatefulFormData}/>
+            </div>
+            <div className="column">
+              <LightSaber {...statefulFormData} />
+            </div>
+          </Fragment>
+        );
       case 1:
         return <div>Redux form</div>;
       case 2:
@@ -26,6 +41,7 @@ const FormsSwitcher = ({onSendForm}) => {
       <div className="forms-switcher__tabs">
         {['Stateful Form', 'Redux Form', 'React FinalForm', 'Formik'].map((name, index)=> (
           <button
+            key={name}
             className={`button forms-switcher__tab ${tabId === index ? 'is-primary' : 'is-link'}`}
             type="button"
             onClick={() => setTabId(index)}
@@ -35,7 +51,9 @@ const FormsSwitcher = ({onSendForm}) => {
         ))}
       </div>
       <div className="forms-switcher__content">
-        {displayFormContent(tabId)}
+        <div className="columns">
+          {displayFormContent(tabId)}
+        </div>
       </div>
     </div>
   );
