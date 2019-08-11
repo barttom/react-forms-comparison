@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 
 const StatefulForm = ({ onSendForm }) => {
   const [form, setForm] = useState({
@@ -101,10 +100,6 @@ const StatefulForm = ({ onSendForm }) => {
       </button>
     </form>
   );
-};
-
-StatefulForm.propTypes = {
-
 };
 
 export default StatefulForm;
