@@ -1,0 +1,12 @@
+.forms-switcher {
+    padding: 15px 0;
+}
+
+.forms-switcher__tabs {
+    width: calc(100% - 20px);
+    margin-left: -10px;
+    margin-bottom: 15px;
+}
+.forms-switcher__tab {
+    margin: 0 10px;
+}
