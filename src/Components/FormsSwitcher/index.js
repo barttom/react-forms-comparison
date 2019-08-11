@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import './style.css'
+import StatefulForm from "../StatefulForm";
 
 const displayFormContent = tabId => {
   switch (tabId) {
     case 0:
-      return <div>Stateful</div>;
+      return <StatefulForm />;
     case 1:
       return <div>Redux form</div>;
     case 2:
@@ -17,7 +18,7 @@ const displayFormContent = tabId => {
 };
 
 const FormsSwitcher = () => {
-  const [tabId, setTabId] = useState(1);
+  const [tabId, setTabId] = useState(0);
 
   return (
     <div className="forms-switcher">
