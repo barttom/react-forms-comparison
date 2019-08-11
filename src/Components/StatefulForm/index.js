@@ -6,8 +6,8 @@ const StatefulForm = () => {
     name: '',
     email: '',
     isDoubleBladed: false,
-    colorMain: '',
-    colorSecondary: null,
+    colorMain: '#0074D9',
+    colorSecondary: '#0074D9',
   });
   const handleChange = ({ target }) => {
     setForm({
@@ -53,7 +53,6 @@ const StatefulForm = () => {
             className="select"
             value={form.colorMain}
           >
-            <option value="">-</option>
             <option value="#0074D9">Blue</option>
             <option value="#2ECC40">Green</option>
             <option value="#FF4136">Red</option>
@@ -87,7 +86,6 @@ const StatefulForm = () => {
               className="select"
               value={form.colorSecondary}
             >
-              <option value="">-</option>
               <option value="#0074D9">Blue</option>
               <option value="#2ECC40">Green</option>
               <option value="#FF4136">Red</option>
