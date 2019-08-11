@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-const StatefulForm = () => {
+const StatefulForm = ({ onSendForm }) => {
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -17,7 +17,7 @@ const StatefulForm = () => {
   };
 
   return (
-    <form action="" id="stateful-form">
+    <form onSubmit={(event) => onSendForm(form, event)} id="stateful-form">
       <div className="field">
         <label className="label">Name</label>
         <div className="control">
@@ -35,7 +35,7 @@ const StatefulForm = () => {
         <label className="label">Email</label>
         <div className="control">
           <input
-            name="name"
+            name="email"
             className="input"
             type="email"
             placeholder="Email"
@@ -93,6 +93,12 @@ const StatefulForm = () => {
           </div>
         </div>
       )}
+      <button
+        type="submit"
+        className="button is-success"
+      >
+        Order!
+      </button>
     </form>
   );
 };

@@ -1,8 +1,20 @@
-import React, {Fragment} from 'react';
+import React, { Fragment, useState } from 'react';
 import 'bulma/css/bulma.css'
 import FormsSwitcher from "./Components/FormsSwitcher";
 
 function App() {
+  const [isSent, setIsSent] = useState(false);
+  const handleSendForm = ({name, email}, event) => {
+    event.preventDefault();
+
+    const isValid = name.length > 0 && email.length > 0;
+    if (isValid) {
+      setIsSent(true);
+    } else {
+      alert('Form valid is not!');
+    }
+  };
+
   return (
     <Fragment>
       <section className="hero is-primary">
@@ -15,7 +27,21 @@ function App() {
         </div>
       </section>
       <div className="container">
-        <FormsSwitcher/>
+        {isSent ? (
+          <section className="hero is-medium is-primary is-bold">
+            <div className="hero-body">
+                <h2 className="subtitle has-text-centered ">
+                  Your purchase has been accepeted!
+                  {' '}
+                  <button onClick={() => setIsSent(false)}>
+                    Buy again
+                  </button>
+                </h2>
+            </div>
+          </section>
+        ) : (
+          <FormsSwitcher onSendForm={handleSendForm}/>
+        )}
       </div>
     </Fragment>
   );
