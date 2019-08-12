@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { validEmail, validName } from "../../helpers/validation";
 
 const StatefulForm = ({
   onChangeData,
@@ -28,6 +29,8 @@ const StatefulForm = ({
       isDoubleBladed,
     });
   };
+  const isNameInvalid = !validName(form.name);
+  const isEmailInvalid = !validEmail(form.email);
 
   useEffect(() => onChangeData({
     isDoubleBladed: false,
@@ -43,40 +46,48 @@ const StatefulForm = ({
         <div className="control">
           <input
             name="name"
-            className="input"
+            className={`input ${isNameInvalid ? 'is-danger' : ''}`}
             type="text"
             placeholder="Name"
             onChange={handleChange}
             value={form.name}
           />
         </div>
+        {isNameInvalid && (
+          <p className="help is-danger">This field shouldn't be empty and should have only letters.</p>
+        )}
       </div>
       <div className="field">
         <label className="label">Email</label>
         <div className="control">
           <input
             name="email"
-            className="input"
+            className={`input ${isEmailInvalid ? 'is-danger' : ''}`}
             type="email"
             placeholder="Email"
             onChange={handleChange}
             value={form.email}
           />
         </div>
+        {isEmailInvalid && (
+          <p className="help is-danger">E-mail is invalid.</p>
+        )}
       </div>
       <div className="field">
         <label className="label">Main color</label>
         <div className="control">
-          <select
-            name="colorMain"
-            onChange={handleChange}
-            className="select"
-            value={form.colorMain}
-          >
-            <option value="#0074D9">Blue</option>
-            <option value="#2ECC40">Green</option>
-            <option value="#FF4136">Red</option>
-          </select>
+          <div className="select">
+            <select
+              name="colorMain"
+              onChange={handleChange}
+              className="select"
+              value={form.colorMain}
+            >
+              <option value="#0074D9">Blue</option>
+              <option value="#2ECC40">Green</option>
+              <option value="#FF4136">Red</option>
+            </select>
+          </div>
         </div>
       </div>
       <div className="field">
@@ -100,16 +111,18 @@ const StatefulForm = ({
         <div className="field">
           <label className="label">Secondary color</label>
           <div className="control">
-            <select
-              name="colorSecondary"
-              onChange={handleChange}
-              className="select"
-              value={form.colorSecondary}
-            >
-              <option value="#0074D9">Blue</option>
-              <option value="#2ECC40">Green</option>
-              <option value="#FF4136">Red</option>
-            </select>
+            <div className="select">
+              <select
+                name="colorSecondary"
+                onChange={handleChange}
+                className="select"
+                value={form.colorSecondary}
+              >
+                <option value="#0074D9">Blue</option>
+                <option value="#2ECC40">Green</option>
+                <option value="#FF4136">Red</option>
+              </select>
+            </div>
           </div>
         </div>
       )}
