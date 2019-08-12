@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import 'bulma/css/bulma.css'
 import FormsSwitcher from "./Components/FormsSwitcher";
-import {validEmail, validName} from "./helpers/validation";
+import { validEmail, validName } from "./helpers/validation";
 
 function App() {
   const [isSent, setIsSent] = useState(false);
