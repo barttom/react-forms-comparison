@@ -1,17 +1,18 @@
 import React, { Fragment, useState } from 'react';
 import 'bulma/css/bulma.css'
 import FormsSwitcher from "./Components/FormsSwitcher";
+import { validEmail, validName } from "./helpers/validation";
 
 function App() {
   const [isSent, setIsSent] = useState(false);
   const handleSendForm = ({name, email}, event) => {
     event.preventDefault();
 
-    const isValid = name.length > 0 && email.length > 0;
+    const isValid = validName(name) && validEmail(email);
     if (isValid) {
       setIsSent(true);
     } else {
-      alert('Form valid is not!');
+      alert(`Form valid is not!  <(°.°)>`);
     }
   };
 
