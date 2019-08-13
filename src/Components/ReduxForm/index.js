@@ -10,12 +10,12 @@ const mainReducer = combineReducers({
 
 const store = createStore(mainReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
-const ReduxFormProvider = () => {
+const ReduxFormProvider = ({ onSendForm }) => {
   return (
     <Provider store={store}>
       <div className="columns">
         <div className="column">
-          <ReduxFormFields />
+          <ReduxFormFields onSubmit={onSendForm}/>
         </div>
       </div>
     </Provider>

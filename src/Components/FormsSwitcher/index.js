@@ -25,7 +25,7 @@ const FormsSwitcher = ({onSendForm}) => {
           </div>
         );
       case 1:
-        return <ReduxFormProvider />;
+        return <ReduxFormProvider onSendForm={onSendForm} />;
       case 2:
         return <div>React Final form</div>;
       case 3:
