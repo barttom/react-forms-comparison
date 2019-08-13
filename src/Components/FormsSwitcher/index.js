@@ -1,9 +1,8 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 import './style.css'
 import StatefulForm from "../StatefulForm";
 import LightSaber from "../LightSaber";
-
-
+import ReduxFormProvider from "../ReduxForm";
 
 const FormsSwitcher = ({onSendForm}) => {
   const [tabId, setTabId] = useState(0);
@@ -16,17 +15,17 @@ const FormsSwitcher = ({onSendForm}) => {
     switch (tabId) {
       case 0:
         return (
-          <Fragment>
+          <div className="columns">
             <div className="column">
               <StatefulForm onSendForm={onSendForm} onChangeData={setStatefulFormData}/>
             </div>
             <div className="column">
               <LightSaber {...statefulFormData} />
             </div>
-          </Fragment>
+          </div>
         );
       case 1:
-        return <div>Redux form</div>;
+        return <ReduxFormProvider onSendForm={onSendForm} />;
       case 2:
         return <div>React Final form</div>;
       case 3:
@@ -51,9 +50,7 @@ const FormsSwitcher = ({onSendForm}) => {
         ))}
       </div>
       <div className="forms-switcher__content">
-        <div className="columns">
-          {displayFormContent(tabId)}
-        </div>
+        {displayFormContent(tabId)}
       </div>
     </div>
   );

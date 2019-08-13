@@ -5,9 +5,7 @@ import { validEmail, validName } from "./helpers/validation";
 
 function App() {
   const [isSent, setIsSent] = useState(false);
-  const handleSendForm = ({name, email}, event) => {
-    event.preventDefault();
-
+  const handleSendForm = ({name, email}) => {
     const isValid = validName(name) && validEmail(email);
     if (isValid) {
       setIsSent(true);

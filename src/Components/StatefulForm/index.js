@@ -29,6 +29,10 @@ const StatefulForm = ({
       isDoubleBladed,
     });
   };
+  const handleSubmit = event => {
+    event.preventDefault()
+    onSendForm(form);
+  };
   const isNameInvalid = !validName(form.name);
   const isEmailInvalid = !validEmail(form.email);
 
@@ -40,7 +44,7 @@ const StatefulForm = ({
 
 
   return (
-    <form onSubmit={(event) => onSendForm(form, event)} id="stateful-form">
+    <form onSubmit={handleSubmit} id="stateful-form">
       <div className="field">
         <label className="label">Name</label>
         <div className="control">
