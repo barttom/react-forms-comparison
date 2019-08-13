@@ -2,7 +2,8 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { combineReducers, createStore } from 'redux';
 import { reducer as formReducer } from 'redux-form'
-import ReduxFormFields from "../FormsSwitcher/ReduxFormFields";
+import ReduxFormFields from "./ReduxFormFields";
+import ReduxFormLightSaber from "./ReduxFormLightSaber";
 
 const mainReducer = combineReducers({
   form: formReducer
@@ -16,6 +17,9 @@ const ReduxFormProvider = ({ onSendForm }) => {
       <div className="columns">
         <div className="column">
           <ReduxFormFields onSubmit={onSendForm}/>
+        </div>
+        <div className="column">
+          <ReduxFormLightSaber />
         </div>
       </div>
     </Provider>
