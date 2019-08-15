@@ -4,8 +4,10 @@
   "private": true,
   "dependencies": {
     "bulma": "^0.7.5",
+    "final-form": "^4.18.4",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-final-form": "^6.3.0",
     "react-redux": "^7.1.0",
     "react-scripts": "3.0.1",
     "redux": "^4.0.4",
