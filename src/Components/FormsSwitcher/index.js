@@ -3,6 +3,7 @@ import './style.css'
 import StatefulForm from "../StatefulForm";
 import LightSaber from "../LightSaber";
 import ReduxFormProvider from "../ReduxForm";
+import FinalForm from "../FinalForm";
 
 const FormsSwitcher = ({onSendForm}) => {
   const [tabId, setTabId] = useState(0);
@@ -27,7 +28,16 @@ const FormsSwitcher = ({onSendForm}) => {
       case 1:
         return <ReduxFormProvider onSendForm={onSendForm} />;
       case 2:
-        return <div>React Final form</div>;
+        return (
+          <div className="columns">
+            <div className="column">
+              <FinalForm onSendForm={onSendForm} onChangeData={setStatefulFormData}/>
+            </div>
+            <div className="column">
+              <LightSaber {...statefulFormData} />
+            </div>
+          </div>
+        );
       case 3:
         return <div>Formik</div>;
       default:
