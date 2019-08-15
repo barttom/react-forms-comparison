@@ -4,6 +4,7 @@ import StatefulForm from "../StatefulForm";
 import LightSaber from "../LightSaber";
 import ReduxFormProvider from "../ReduxForm";
 import FinalForm from "../FinalForm";
+import FormikForm from "../FormikForm";
 
 const FormsSwitcher = ({onSendForm}) => {
   const [tabId, setTabId] = useState(0);
@@ -39,7 +40,16 @@ const FormsSwitcher = ({onSendForm}) => {
           </div>
         );
       case 3:
-        return <div>Formik</div>;
+        return (
+        <div className="columns">
+          <div className="column">
+            <FormikForm onSendForm={onSendForm} onChangeData={setStatefulFormData} />
+          </div>
+          <div className="column">
+            <LightSaber {...statefulFormData} />
+          </div>
+        </div>
+      );
       default:
         return null;
     }
