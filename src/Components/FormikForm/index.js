@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Field, FormSpy, } from 'react-final-form'
+import { Formik, Field } from 'formik';
 import {validEmail, validName} from "../../helpers/validation";
 
 const validate = ({name, email}) => {
@@ -15,10 +15,9 @@ const validate = ({name, email}) => {
   return errors;
 };
 
-const FinalForm = ({ onChangeData, onSendForm}) => {
-
+const FormikForm = ({onSendForm, onChangeData}) => {
   return (
-    <Form
+    <Formik
       onSubmit={onSendForm}
       validate={validate}
       initialValues={{
@@ -28,62 +27,66 @@ const FinalForm = ({ onChangeData, onSendForm}) => {
         colorMain: '#0074D9',
         colorSecondary: '#0074D9',
       }}
-      render={({ values }) => (
+      render={({ values, errors, handleChange, }) => (
         <form onSubmit={event => {
           event.preventDefault();
           onSendForm(values);
         }}>
-          <FormSpy
-            onChange={({ values }) => {
-              onChangeData(values);
-            }}
-          />
           <Field
             name="name"
-            render={({ input, meta: { error } }) => (
+            render={({ field }) => (
               <div className="field">
                 <label className="label">Name</label>
                 <div className="control">
                   <input
-                    {...input}
-                    className={`input ${error ? 'is-danger' : ''}`}
+                    {...field}
+                    className={`input ${errors.name ? 'is-danger' : ''}`}
                     placeholder="Name"
                     type="text"
                   />
                 </div>
-                {error && (
-                  <p className="help is-danger">{error}</p>
+                {errors.name && (
+                  <p className="help is-danger">{errors.name}</p>
                 )}
               </div>
             )}
           />
           <Field
             name="email"
-            render={({ input, meta: { error } }) => (
+            render={({ field }) => (
               <div className="field">
                 <label className="label">Email</label>
                 <div className="control">
                   <input
-                    {...input}
-                    className={`input ${error ? 'is-danger' : ''}`}
+                    {...field}
+                    className={`input ${errors.email ? 'is-danger' : ''}`}
                     placeholder="Email"
                     type="email"
                   />
                 </div>
-                {error && (
-                  <p className="help is-danger">{error}</p>
+                {errors.email  && (
+                  <p className="help is-danger">{errors.email}</p>
                 )}
               </div>
             )}
           />
           <Field
             name="colorMain"
-            render={({ input }) => (
+            render={({ field }) => (
               <div className="field">
                 <label className="label">Main color</label>
                 <div className="control">
                   <div className="select">
-                    <select {...input}>
+                    <select
+                      {...field}
+                      onChange={(event) => {
+                        handleChange(event);
+                        onChangeData({
+                          ...values,
+                          colorMain: event.target.value,
+                        })
+                      }}
+                    >
                       <option value="#0074D9">Blue</option>
                       <option value="#2ECC40">Green</option>
                       <option value="#FF4136">Red</option>
@@ -96,17 +99,24 @@ const FinalForm = ({ onChangeData, onSendForm}) => {
           <Field
             name="isDoubleBladed"
             type="checkbox"
-            render={({ input }) => (
+            render={({ field }) => (
               <div className="field">
                 <label className="label">Double Blade</label>
                 <div className="control">
                   <label htmlFor="double-bladed">
                     <input
-                      { ...input }
+                      { ...field }
                       id="double-bladed"
-                      checked={input.value}
+                      checked={field.value}
                       className="checkbox"
                       type="checkbox"
+                      onChange={(event) => {
+                        handleChange(event);
+                        onChangeData({
+                          ...values,
+                          isDoubleBladed: event.target.checked,
+                        })
+                      }}
                     />
                     {' '}
                     Do You want double blade sword?
@@ -118,12 +128,21 @@ const FinalForm = ({ onChangeData, onSendForm}) => {
           {values.isDoubleBladed && (
             <Field
               name="colorSecondary"
-              component={({ input }) => (
+              component={({ field }) => (
                 <div className="field">
                   <label className="label">Secondary color color</label>
                   <div className="control">
                     <div className="select">
-                      <select {...input}>
+                      <select
+                        {...field}
+                        onChange={(event) => {
+                          handleChange(event);
+                          onChangeData({
+                            ...values,
+                            colorSecondary: event.target.value,
+                          })
+                        }}
+                      >
                         <option value="#0074D9">Blue</option>
                         <option value="#2ECC40">Green</option>
                         <option value="#FF4136">Red</option>
@@ -146,4 +165,4 @@ const FinalForm = ({ onChangeData, onSendForm}) => {
   );
 };
 
-export default FinalForm;
+export default FormikForm;
