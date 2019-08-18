@@ -20,7 +20,7 @@ function App() {
         <div className="hero-body">
           <div className="container">
             <h1 className="title">
-              React form comparing
+              React forms comparison
             </h1>
           </div>
         </div>
