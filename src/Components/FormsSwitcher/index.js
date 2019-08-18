@@ -8,10 +8,12 @@ import FormikForm from "../FormikForm";
 
 const FormsSwitcher = ({onSendForm}) => {
   const [tabId, setTabId] = useState(0);
-  const [statefulFormData, setStatefulFormData] = useState({
-    colorMain: '#0074D9',
-    colorSecondary: '#0074D9'
-  });
+  const [statefulFormData, setStatefulFormData]
+      = useState({
+        colorMain: '#0074D9',
+        colorSecondary: '#0074D9',
+        isDoubleBladed: false,
+      });
 
   const displayFormContent = () => {
     switch (tabId) {
@@ -19,7 +21,10 @@ const FormsSwitcher = ({onSendForm}) => {
         return (
           <div className="columns">
             <div className="column">
-              <StatefulForm onSendForm={onSendForm} onChangeData={setStatefulFormData}/>
+              <StatefulForm
+                onSendForm={onSendForm}
+                onChangeData={setStatefulFormData}
+              />
             </div>
             <div className="column">
               <LightSaber {...statefulFormData} />
@@ -32,7 +37,10 @@ const FormsSwitcher = ({onSendForm}) => {
         return (
           <div className="columns">
             <div className="column">
-              <FinalForm onSendForm={onSendForm} onChangeData={setStatefulFormData}/>
+              <FinalForm
+                onSendForm={onSendForm}
+                onChangeData={setStatefulFormData}
+              />
             </div>
             <div className="column">
               <LightSaber {...statefulFormData} />

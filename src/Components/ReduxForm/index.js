@@ -8,9 +8,7 @@ import ReduxFormLightSaber from "./ReduxFormLightSaber";
 const mainReducer = combineReducers({
   form: formReducer
 });
-
-const store = createStore(mainReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
-
+const store = createStore(mainReducer);
 const ReduxFormProvider = ({ onSendForm }) => {
   return (
     <Provider store={store}>
@@ -23,7 +21,6 @@ const ReduxFormProvider = ({ onSendForm }) => {
         </div>
       </div>
     </Provider>
-
   );
 };
 

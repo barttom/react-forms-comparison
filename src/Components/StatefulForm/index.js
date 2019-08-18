@@ -30,7 +30,7 @@ const StatefulForm = ({
     });
   };
   const handleSubmit = event => {
-    event.preventDefault()
+    event.preventDefault();
     onSendForm(form);
   };
   const isNameInvalid = !validName(form.name);
@@ -58,7 +58,9 @@ const StatefulForm = ({
           />
         </div>
         {isNameInvalid && (
-          <p className="help is-danger">This field shouldn't be empty and should have only letters.</p>
+          <p className="help is-danger">
+            This field shouldn't be empty and should have only letters.
+          </p>
         )}
       </div>
       <div className="field">
