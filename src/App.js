@@ -10,7 +10,7 @@ function App() {
     if (isValid) {
       setIsSent(true);
     } else {
-      alert(`Form valid is not!  <(°.°)>`);
+      alert(`Hmmmmmm.... Form is valid not!  <(°.°)>`);
     }
   };
 
