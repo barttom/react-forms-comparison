@@ -1,5 +1,5 @@
 export function validName (name = '') {
-  return name.trim().length > 0 && name.trim().match(/^[A-Za-z]+$/);
+  return name.trim().length > 0 && name.trim().match(/^[a-zA-Z\s]*$/);
 }
 
 export function validEmail (email = '') {

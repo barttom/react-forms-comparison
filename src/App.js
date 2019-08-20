@@ -44,10 +44,13 @@ function App() {
         {isSent ? (
           <section className="hero is-medium is-primary is-bold">
             <div className="hero-body">
-                <h2 className="subtitle has-text-centered ">
-                  Your purchase has been accepeted!
+                <h2 className="subtitle is-2 has-text-centered ">
+                  Your purchase has been accepted!
                   {' '}
-                  <button onClick={() => setIsSent(false)}>
+                  <button
+                    className="button is-warning"
+                    onClick={() => setIsSent(false)}
+                  >
                     Buy again
                   </button>
                 </h2>
