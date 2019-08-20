@@ -15,7 +15,7 @@ const validate = ({name, email}) => {
   return errors;
 };
 
-const FinalForm = ({ onChangeData, onSendForm}) => {
+const FinalForm = ({ onChangeData, onSendForm }) => {
 
   return (
     <Form
@@ -28,11 +28,8 @@ const FinalForm = ({ onChangeData, onSendForm}) => {
         colorMain: '#0074D9',
         colorSecondary: '#0074D9',
       }}
-      render={({ values }) => (
-        <form onSubmit={event => {
-          event.preventDefault();
-          onSendForm(values);
-        }}>
+      render={({ handleSubmit, values, pristine, submitting }) => (
+        <form onSubmit={handleSubmit}>
           <FormSpy
             onChange={({ values }) => {
               onChangeData(values);
@@ -40,18 +37,18 @@ const FinalForm = ({ onChangeData, onSendForm}) => {
           />
           <Field
             name="name"
-            render={({ input, meta: { error } }) => (
+            render={({ input, meta: { error, touched } }) => (
               <div className="field">
                 <label className="label">Name</label>
                 <div className="control">
                   <input
                     {...input}
-                    className={`input ${error ? 'is-danger' : ''}`}
+                    className={`input ${touched && error ? 'is-danger' : ''}`}
                     placeholder="Name"
                     type="text"
                   />
                 </div>
-                {error && (
+                {touched && error && (
                   <p className="help is-danger">{error}</p>
                 )}
               </div>
@@ -59,18 +56,18 @@ const FinalForm = ({ onChangeData, onSendForm}) => {
           />
           <Field
             name="email"
-            render={({ input, meta: { error } }) => (
+            render={({ input, meta: { error, touched } }) => (
               <div className="field">
                 <label className="label">Email</label>
                 <div className="control">
                   <input
                     {...input}
-                    className={`input ${error ? 'is-danger' : ''}`}
+                    className={`input ${touched && error ? 'is-danger' : ''}`}
                     placeholder="Email"
                     type="email"
                   />
                 </div>
-                {error && (
+                {touched && error && (
                   <p className="help is-danger">{error}</p>
                 )}
               </div>
@@ -137,6 +134,7 @@ const FinalForm = ({ onChangeData, onSendForm}) => {
           <button
             type="submit"
             className="button is-success"
+            disabled={submitting || pristine}
           >
             Order!
           </button>

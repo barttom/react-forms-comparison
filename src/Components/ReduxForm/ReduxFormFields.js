@@ -3,23 +3,23 @@ import { Field, reduxForm, formValueSelector } from 'redux-form';
 import {validEmail, validName} from "../../helpers/validation";
 import { connect } from 'react-redux';
 
-let ReduxFormFields = ({ isDoubleBladed, handleSubmit }) => {
+let ReduxFormFields = ({ isDoubleBladed, handleSubmit, pristine, submitting }) => {
   return (
     <form onSubmit={ handleSubmit }>
       <Field
         name="name"
-        component={({ input, meta: { error } }) => (
+        component={({ input, meta: { error, touched } }) => (
           <div className="field">
             <label className="label">Name</label>
             <div className="control">
               <input
                 {...input}
-                className={`input ${error ? 'is-danger' : ''}`}
+                className={`input ${touched && error ? 'is-danger' : ''}`}
                 placeholder="Name"
                 type="text"
               />
             </div>
-            {error && (
+            {touched && error && (
               <p className="help is-danger">{error}</p>
             )}
           </div>
@@ -27,18 +27,18 @@ let ReduxFormFields = ({ isDoubleBladed, handleSubmit }) => {
       />
       <Field
         name="email"
-        component={({ input, meta: { error } }) => (
+        component={({ input, meta: { error, touched } }) => (
           <div className="field">
             <label className="label">Email</label>
             <div className="control">
               <input
                 {...input}
-                className={`input ${error ? 'is-danger' : ''}`}
+                className={`input ${touched && error ? 'is-danger' : ''}`}
                 placeholder="Email"
                 type="email"
               />
             </div>
-            {error && (
+            {touched && error && (
               <p className="help is-danger">{error}</p>
             )}
           </div>
@@ -104,6 +104,7 @@ let ReduxFormFields = ({ isDoubleBladed, handleSubmit }) => {
       <button
         type="submit"
         className="button is-success"
+        disabled={pristine || submitting}
       >
         Order!
       </button>

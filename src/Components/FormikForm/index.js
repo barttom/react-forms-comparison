@@ -1,5 +1,5 @@
 import React from 'react';
-import { Formik, Field } from 'formik';
+import { Form, Formik, Field } from 'formik';
 import {validEmail, validName} from "../../helpers/validation";
 
 const validate = ({name, email}) => {
@@ -27,11 +27,8 @@ const FormikForm = ({onSendForm, onChangeData}) => {
         colorMain: '#0074D9',
         colorSecondary: '#0074D9',
       }}
-      render={({ values, errors, handleChange, }) => (
-        <form onSubmit={event => {
-          event.preventDefault();
-          onSendForm(values);
-        }}>
+      render={({ values, errors, handleChange, isSubmitting, isValid}) => (
+        <Form>
           <Field
             name="name"
             render={({ field }) => (
@@ -156,10 +153,11 @@ const FormikForm = ({onSendForm, onChangeData}) => {
           <button
             type="submit"
             className="button is-success"
+            disabled={isSubmitting || !isValid}
           >
             Order!
           </button>
-        </form>
+        </Form>
       )}
     />
   );
