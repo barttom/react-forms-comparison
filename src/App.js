@@ -5,12 +5,27 @@ import { validEmail, validName } from "./helpers/validation";
 
 function App() {
   const [isSent, setIsSent] = useState(false);
-  const handleSendForm = ({name, email}) => {
-    const isValid = validName(name) && validEmail(email);
-    if (isValid) {
+
+  const handleSendForm = async values => {
+    const { name, email } = values;
+    console.log( 'sending values....');
+
+    await new Promise(resolve => setTimeout(resolve, 1200));
+    const errors = {};
+
+    if (!validName(name)) {
+      errors.name = 'This field shouldn\'t be empty and should have only letters.';
+    }
+    if (!validEmail(email)) {
+      errors.email = 'E-mail is invalid.';
+    }
+
+    if (Object.keys(errors).length === 0) {
       setIsSent(true);
+      return values;
     } else {
-      alert(`Hmmmmmm.... Form is valid not!  <(°.°)>`);
+      alert(`Hrmmmm.... Form is valid not!  <(°.°)>`);
+      return errors;
     }
   };
 

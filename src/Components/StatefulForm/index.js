@@ -16,13 +16,13 @@ const StatefulForm = ({
       ...form,
       [target.name]: target.type === 'checkbox' ? target.checked : target.value,
     };
+    setForm(newData);
+
     const {
       colorMain,
       colorSecondary,
       isDoubleBladed,
     } = newData;
-
-    setForm(newData);
     onChangeData({
       colorMain,
       colorSecondary,
