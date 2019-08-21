@@ -40,7 +40,7 @@ const StatefulForm = ({
     isDoubleBladed: false,
     colorMain: '#0074D9',
     colorSecondary: '#0074D9',
-  }), []);
+  }), [onChangeData]);
 
 
   return (

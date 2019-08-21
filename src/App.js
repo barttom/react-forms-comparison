@@ -9,12 +9,11 @@ function App() {
   const handleSendForm = async values => {
     const { name, email } = values;
     console.log( 'sending values....');
-
     await new Promise(resolve => setTimeout(resolve, 1200));
     const errors = {};
 
     if (!validName(name)) {
-      errors.name = 'This field shouldn\'t be empty and should have only letters.';
+      errors.name = 'Name is invalid';
     }
     if (!validEmail(email)) {
       errors.email = 'E-mail is invalid.';
@@ -57,7 +56,9 @@ function App() {
             </div>
           </section>
         ) : (
-          <FormsSwitcher onSendForm={handleSendForm}/>
+          <section className="section">
+            <FormsSwitcher onSendForm={handleSendForm}/>
+          </section>
         )}
       </div>
     </Fragment>

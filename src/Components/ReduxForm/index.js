@@ -6,9 +6,12 @@ import ReduxFormFields from "./ReduxFormFields";
 import ReduxFormLightSaber from "./ReduxFormLightSaber";
 
 const mainReducer = combineReducers({
-  form: formReducer
+  form: formReducer,
 });
-const store = createStore(mainReducer);
+const store = createStore(
+    mainReducer,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    );
 const ReduxFormProvider = ({ onSendForm }) => {
   return (
     <Provider store={store}>
