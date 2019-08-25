@@ -1,5 +1,14 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+##About
+This is project for presentation about few ways to handle forms in React.
+I check and compare this solutions:
+* Stateful form component
+* Redux Form
+* React Final Form
+* Formik
 
+Presentation is located in `./BartTomczyk - Zapanuj nad formularzami w React.zip`
+Enjoy!
 ## Available Scripts
 
 In the project directory, you can run:
