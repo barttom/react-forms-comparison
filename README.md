@@ -1,5 +1,6 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-##About
+
+## About
 This is project for presentation about few ways to handle forms in React.
 I check and compare this solutions:
 * Stateful form component
